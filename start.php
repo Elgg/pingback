@@ -13,11 +13,6 @@
 	{
 		global $CONFIG;
 		
-		// Subtypes that will be processed and pings sent. TODO: Make this configurable.
-		$CONFIG->pingback_subtypes = array (
-			'blog'
-		);
-		
 		// Outgoing pings - listen to object create and look at supported subtypes (configurable, but initially 'blog').. will parse urls and transmit
 		register_elgg_event_handler('create', 'object', 'pingback_send_pings');
 		
@@ -128,7 +123,10 @@
 	{
 		global $CONFIG;
 		
-		if (($object) && (in_array(get_subtype_from_id($object->subtype), $CONFIG->pingback_subtypes)))
+		$pingback_subtypes = array();
+		$pingback_subtypes = trigger_plugin_hook('pingback:object:subtypes', 'object', null, $pingback_subtypes);
+		
+		if (($object) && (in_array(get_subtype_from_id($object->subtype), $pingback_subtypes)))
 		{
 			
 			// Find urls
