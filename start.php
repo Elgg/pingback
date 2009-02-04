@@ -206,7 +206,7 @@
 		{
 			// We have an extract and we are valid as far as we can tell... so now create an object.
 			$ping = new ElggObject();
-			$ping->access_id = 2;
+			$ping->access_id = ACCESS_PUBLIC;
 			$ping->subtype = 'pingback';
 			$ping->title = $extract['title'];
 			$ping->description = $extract['extract'];
