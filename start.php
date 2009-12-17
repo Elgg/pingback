@@ -20,7 +20,7 @@
 		register_xmlrpc_handler('pingback.ping', 'pingback_incoming_ping');
 		
 		// Add meta tags
-		extend_view('metatags','pingback/metatags');
+		elgg_extend_view('metatags','pingback/metatags');
 		
 	}
 	
